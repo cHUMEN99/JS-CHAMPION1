@@ -1,0 +1,90 @@
+.content {
+    padding: 20px;
+}
+
+.tablichki {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.contact-box {
+    width: 48%;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f0f8ff; /* Синій відтінок */
+    color: black;
+    border-radius: 15px; /* Закруглені кути */
+    border: 1px solid #ccc; /* Додано рамку */
+    box-sizing: border-box; /* Включає padding та border в розмір елемента */
+}
+
+.contact-box img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.contact-box h3 {
+    margin-top: 0;
+}
+
+.icon-text {
+    display: flex;
+    
+    
+    margin-bottom: 0px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+@media (max-width: 1200px) {
+    .contact-box {
+        width: 100%; /* Ширина 100% для менших екранів */
+        margin-bottom: 10px;
+    }
+
+    .tablichki {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 998px) {
+    .contact-box {
+        width: 100%; /* Ширина 100% для телефонів */
+        padding: 20px; /* Збільшений padding для зручності читання */
+        margin-bottom: 10px;
+    }
+
+    .tablichki {
+        padding: 10px; /* Зменшений padding для контейнера */
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-box {
+        width: 100%; /* Ширина 100% для телефонів */
+        padding: 20px; /* Збільшений padding для зручності читання */
+        margin-bottom: 10px;
+    }
+
+    .tablichki {
+        padding: 10px; /* Зменшений padding для контейнера */
+    }
+}
+
+@media (max-width: 460px) {
+    .contact-box {
+        width: 100%; /* Ширина 100% для телефонів */
+        padding: 20px; /* Збільшений padding для зручності читання */
+        margin-bottom: 10px;
+    }
+
+    .tablichki {
+        padding: 10px; /* Зменшений padding для контейнера */
+    }
+}
