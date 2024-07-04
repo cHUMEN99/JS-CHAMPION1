@@ -46,7 +46,7 @@ function Abaut() {
                         <span ></span>
                     </div>
                     <Link to='/'>
-                    <img style={imageStyle} src="/img/image.jpg" alt="Масла Motours" />
+                    <img style={imageStyle} src={`${process.env.PUBLIC_URL}/img/image.jpg  `} alt="Масла Motours" />
                     </Link>
                     <li>
                         

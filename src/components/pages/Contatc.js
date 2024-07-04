@@ -8,14 +8,14 @@ function Contact() {
             <div className="tablichki">
                 <div className="contact-box">
                     <div className="icon-text">
-                        <img className="icon" src='/img/phone.svg' alt="Phone" />
+                        <img className="icon" src={`${process.env.PUBLIC_URL}/img/phone.svg`} alt="Phone" />
                         <h3>Зв'язатися з нами</h3>
                     </div>
                     <p>Kyivstar: +38 0(67) 123 49 37</p>
                 </div>
                 <div className="contact-box">
                     <div className="icon-text">
-                        <img  className="icon" src='/img/message.svg' alt="Messenger" />
+                        <img  className="icon" src={`${process.env.PUBLIC_URL}/img/message.svg`} alt="Messenger" />
                         <h3>Месенджери</h3>
                     </div>
                     <p>Viber: @champion</p>
@@ -23,14 +23,14 @@ function Contact() {
                 </div>
                 <div className="contact-box">
                     <div className='icon-text'>
-                    <img  className="icon" src='/img/gmail.svg' alt="Messenger" />
+                    <img  className="icon" src={`${process.env.PUBLIC_URL}/img/gmail.svg`} alt="Messenger" />
                     <h3>Наша пошта</h3>
                     </div>
                     <p>E-mail: info@champion.ua</p>
                 </div>
                 <div className="contact-box">
                 <div className='icon-text'>
-                    <img  className="icon" src='/img/time.svg' alt="Messenger" />
+                    <img  className="icon" src={`${process.env.PUBLIC_URL}/img/phone1.svg`} alt="Messenger" />
                     <h3>Графік роботи кол-центру</h3>
                     </div>
                     

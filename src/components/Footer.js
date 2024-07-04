@@ -47,7 +47,7 @@ function Footer() {
             </div>
             <div className="bottom">
                 <p>© Champion 2024. All rights reserved.</p>
-                <p>Secure payments <a href={sulka} target="_blank" rel="noopener noreferrer"><img style={{height:'50px', width:'50px'}} src="/img/maps.png" alt="Google Maps" /></a></p>
+                <p>Secure payments <a href={sulka} target="_blank" rel="noopener noreferrer"><img style={{height:'50px', width:'50px'}} src={`${process.env.PUBLIC_URL}/img/maps.png`} alt="Google Maps" /></a></p>
             </div>
         </footer>
     );

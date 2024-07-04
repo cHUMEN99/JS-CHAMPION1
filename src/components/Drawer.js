@@ -91,7 +91,7 @@ function Drawer({ OnClose, OnRemove, items = [] }) {
             <div className="drawer">
                 <h2 style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between' }}>
                     Кошик
-                    <img onClick={OnClose} className="remove1" height={30} width={30} src="/img/hrestuk.png" alt="close" />
+                    <img onClick={OnClose} className="remove1" height={30} width={30} src={`${process.env.PUBLIC_URL}/img/hrestuk.png`} alt="close" />
                 </h2>
 
                 <button onClick={viewHistory ? handleBackToCart : handleViewHistory} style={{ marginBottom: '20px', color: 'white' }}>
@@ -149,7 +149,7 @@ function Drawer({ OnClose, OnRemove, items = [] }) {
                                             <p>{obj.title}</p>
                                             <b>{obj.price}₴</b>
                                             <div>
-                                                <img onClick={() => OnRemove(obj.id)} className="remove" height={30} width={30} src="/img/hrestuk.png" alt="remove" />
+                                                <img onClick={() => OnRemove(obj.id)} className="remove" height={30} width={30} src={`${process.env.PUBLIC_URL}/img/hrestuk.png`} alt="remove" />
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@ function Drawer({ OnClose, OnRemove, items = [] }) {
                                         </div>
                                     ) : (
                                         <button onClick={OnClickOrder}>
-                                            Оплатити <img height={25} width={25} src="/img/arrow1.png" alt="Arrow" />
+                                            Оплатити <img height={25} width={25} src={`${process.env.PUBLIC_URL}/img/arrow1.png`} alt="Arrow" />
                                         </button>
                                     )}
                                 </li>

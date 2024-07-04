@@ -24,9 +24,9 @@ function Header(props) {
         <Link to="/">
           <div className="headerLeft">
             <img width={40} height={40} src={`${process.env.PUBLIC_URL}/img/image.jpg`} alt="Logo" />
-            <div className="headerInfo">
-              <h1 >Champion</h1>
-              <p >Магазин автозапчастин</p>
+            <div className="headerInfo12">
+            <h1>Champion</h1>
+            <p className="headerInfo1">Магазин автозапчастин</p>
             </div>
           </div>
         </Link>
@@ -69,16 +69,16 @@ function Header(props) {
       {isMobile && (
         <div className="bottom-nav">
           <Link to="/tovar">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/choise.svg`} alt="Товари" />
+            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/car-wheel.svg`} alt="Товари" />
           </Link>
           <Link to="/partners">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/choise.svg`} alt="Партнери" />
+            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/changing-car.svg`} alt="Партнери" />
           </Link>
           <Link to="/abaut">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/choise.svg`} alt="Про нас" />
+            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/about-us.svg`} alt="Про нас" />
           </Link>
           <Link to="/contact">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/choise.svg`} alt="Зареєструватися" />
+            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/contacts-phone.svg`} alt="Зареєструватися" />
           </Link>
         </div>
       )}

@@ -12,7 +12,7 @@ function Golovnasecond({ OnAddToCart, setFavoritOpend }) {
     const [showPhoneModal, setShowPhoneModal] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
-    const [phoneIcon, setPhoneIcon] = useState('/img/phone.svg');
+    const [phoneIcon, setPhoneIcon] = useState(`${process.env.PUBLIC_URL}/img/phone.svg`);
 
     useEffect(() => {
         const fetchExcelData = async () => {
@@ -89,8 +89,8 @@ function Golovnasecond({ OnAddToCart, setFavoritOpend }) {
     };
 
     const sendTelegramMessage = (message) => {
-        const botToken = '7203876334:AAFjSzR6uHirszWCBYLyJyA5RE9gb9snIWU';
-        const chatId = '825627138';
+        const botToken = 'YOUR_BOT_TOKEN';
+        const chatId = 'YOUR_CHAT_ID';
         const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
         fetch(url, {
@@ -140,18 +140,18 @@ function Golovnasecond({ OnAddToCart, setFavoritOpend }) {
     };
 
     const handleMouseEnter = () => {
-        setPhoneIcon('/img/phone1.svg');
+        setPhoneIcon(`${process.env.PUBLIC_URL}/img/phone1.svg`);
     };
 
     const handleMouseLeave = () => {
-        setPhoneIcon('/img/phone.svg');
+        setPhoneIcon(`${process.env.PUBLIC_URL}/img/phone.svg`);
     };
 
     return (
         <div style={{ marginTop: 'auto', padding: '0', display: 'flex', flexDirection: 'column', alignItems: 'center'  }} className='content'>
             <div style={{ position: 'relative', textAlign: 'center' }}>
                 <Link to="/tovar">
-                    <img style={{ height: '100%', marginTop: '30px', width: '90%' }} src='/img/image.jpg' alt="Main" />
+                    <img style={{ height: '100%', marginTop: '30px', width: '90%' }} src={`${process.env.PUBLIC_URL}/img/image.jpg`} alt="Main" />
                 </Link>
                 <h2 style={{
                     position: 'absolute',

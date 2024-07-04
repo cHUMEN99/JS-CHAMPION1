@@ -101,7 +101,7 @@ function Try({ OnAddToCart, title, price, id, added = false, ...props }) {
               height={25} 
               width={25} 
               style={{ cursor: 'pointer' }} 
-              src="/img/arrowleft.png" 
+              src={`${process.env.PUBLIC_URL}/img/arrowleft.png`} 
               alt="Arrow Left" 
             />
           </Link>
@@ -150,9 +150,9 @@ function Try({ OnAddToCart, title, price, id, added = false, ...props }) {
                 </li>
                 <li className="oplata">
                   <h5>Оплата готівкою, карткою, на розрахунковий рахунок або онлайн за допомогою Visa/Mastercard/MonoPay.</h5>
-                  <img src='/img/visa.svg' alt="Visa" />
-                  <img src='/img/monopay.svg' alt="MonoPay" />
-                  <img src='/img/mastercard.svg' alt="MasterCard" />
+                  <img src={`${process.env.PUBLIC_URL}/img/visa.svg`} alt="Visa" />
+                  <img src={`${process.env.PUBLIC_URL}/img/monopay.svg`} alt="MonoPay" />
+                  <img src={`${process.env.PUBLIC_URL}/img/mastercard.svg`} alt="MasterCard" />
                 </li>
               </ul>
             </div>
@@ -181,84 +181,84 @@ function Try({ OnAddToCart, title, price, id, added = false, ...props }) {
                 </li>
                 <li className="oplata">
                   <h5>Оплата готівкою, карткою, на розрахунковий рахунок або онлайн за допомогою Visa/Mastercard/MonoPay.</h5>
-                  <img src='/img/visa.svg' alt="Visa" />
-                  <img src='/img/monopay.svg' alt="MonoPay" />
-                  <img src='/img/mastercard.svg' alt="MasterCard" />
+                  <img src={`${process.env.PUBLIC_URL}/img/visa.svg`} alt="Visa" />
+                  <img src={`${process.env.PUBLIC_URL}/img/monopay.svg`} alt="MonoPay" />
+                  <img src={`${process.env.PUBLIC_URL}/img/mastercard.svg`} alt="MasterCard" />
                 </li>
               </ul>
             </div>
           </li>
         )}
         <li className="advantages">
-          <h3>Наші переваги:</h3>
-          <ul className="advantages-list">
-            <li className="advantage-item">
-              <img 
-                className="advantage-image"
-                src='/img/dostavka.png' 
-                alt="Зручна доставка" 
-              /> 
-              <span>Зручна доставка</span>
-            </li>
-            <li className="advantage-item">
-              <img 
-                className="advantage-image"
-                src='/img/garan.png' 
-                alt="Гарантія на усі товари" 
-              />
-              <span>Гарантія на усі товари</span>
-            </li>
-          </ul>
-          <ul className="advantages-list" style={{marginTop:'40px'}}>
-            <li className="advantage-item">
-              <img 
-                className="advantage-image"
-                src='/img/garan.png' 
-                alt="Консультація на усі товари" 
-              />
-              <span>Консультація на усі товари</span>
-            </li>
-            <li className="advantage-item">
-              <img 
-                className="advantage-image"
-                src='/img/garan.png' 
-                alt="Миттєва відповідь" 
-              />
-              <span>Миттєва відповідь</span>
-            </li>
-          </ul>
-          <div className='delivery'>
-            <h3>Варіанти доставки:</h3>
-            <ul>
-              <li className="delivery-item">
-                <img src='/img/post-office.svg' className="delivery-icon" alt="Самовивіз" />
-                <div>
-                  <span>Самовивіз:</span>
-                  <h5>З офісу продаж <br />
-                      вул. Кульпарківська, 110, <br />
-                      Львів, Львівська область, 79000
-                  </h5>
-                </div>
-              </li>
-              <li className="delivery-variantu">
-                <img src='/img/nova-poshta.svg' className="delivery-icon" alt="Нова Пошта" />
-                <div>
-                  <span>У відділення Нової пошти</span>
-                  <h5>Безкоштовна доставка від 2500 грн</h5>
-                </div>
-              </li>
-              <li className="delivery-variantu">
-                <img src='/img/nova-poshta.svg' className="delivery-icon" alt="Нова Пошта" />
-                <div>
-                  <span>У поштомат Нової пошти</span>
-                  <h5>Безкоштовна доставка від 2500 грн</h5>
-                </div>
-              </li>
-              <li className="delivery-variantu">
-                <img src='/img/ukr-poshta.svg' className="delivery-icon" alt="Укрпошта" />
-                <div>
-                  <span>У відділення Укрпошти</span>
-                  <h5>Безкоштовна доставка від 2500 грн</h5>
+        <h3>Наші переваги:</h3>
+<ul className="advantages-list">
+  <li className="advantage-item">
+    <img 
+      className="advantage-image"
+      src={`${process.env.PUBLIC_URL}/img/dostavka.png`} 
+      alt="Зручна доставка" 
+    /> 
+    <span>Зручна доставка</span>
+  </li>
+  <li className="advantage-item">
+    <img 
+      className="advantage-image"
+      src={`${process.env.PUBLIC_URL}/img/garan.png`} 
+      alt="Гарантія на усі товари" 
+    />
+    <span>Гарантія на усі товари</span>
+  </li>
+</ul>
+<ul className="advantages-list" style={{marginTop:'40px'}}>
+  <li className="advantage-item">
+    <img 
+      className="advantage-image"
+      src={`${process.env.PUBLIC_URL}/img/garan.png`} 
+      alt="Консультація на усі товари" 
+    />
+    <span>Консультація на усі товари</span>
+  </li>
+  <li className="advantage-item">
+    <img 
+      className="advantage-image"
+      src={`${process.env.PUBLIC_URL}/img/garan.png`} 
+      alt="Миттєва відповідь" 
+    />
+    <span>Миттєва відповідь</span>
+  </li>
+</ul>
+<div className='delivery'>
+  <h3>Варіанти доставки:</h3>
+  <ul>
+    <li className="delivery-item">
+      <img src={`${process.env.PUBLIC_URL}/img/post-office.svg`} className="delivery-icon" alt="Самовивіз" />
+      <div>
+        <span>Самовивіз:</span>
+        <h5>З офісу продаж <br />
+            вул. Кульпарківська, 110, <br />
+            Львів, Львівська область, 79000
+        </h5>
+      </div>
+    </li>
+    <li className="delivery-variantu">
+      <img src={`${process.env.PUBLIC_URL}/img/nova-poshta.svg`} className="delivery-icon" alt="Нова Пошта" />
+      <div>
+        <span>У відділення Нової пошти</span>
+        <h5>Безкоштовна доставка від 2500 грн</h5>
+      </div>
+    </li>
+    <li className="delivery-variantu">
+      <img src={`${process.env.PUBLIC_URL}/img/nova-poshta.svg`} className="delivery-icon" alt="Нова Пошта" />
+      <div>
+        <span>У поштомат Нової пошти</span>
+        <h5>Безкоштовна доставка від 2500 грн</h5>
+      </div>
+    </li>
+    <li className="delivery-variantu">
+      <img src={`${process.env.PUBLIC_URL}/img/ukr-poshta.svg`} className="delivery-icon" alt="Укрпошта" />
+      <div>
+        <span>У відділення Укрпошти</span>
+        <h5>Безкоштовна доставка від 2500 грн</h5>
                 </div>
               </li>
             </ul>
