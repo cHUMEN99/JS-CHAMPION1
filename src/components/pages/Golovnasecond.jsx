@@ -89,8 +89,8 @@ function Golovnasecond({ OnAddToCart, setFavoritOpend }) {
     };
 
     const sendTelegramMessage = (message) => {
-        const botToken = 'YOUR_BOT_TOKEN';
-        const chatId = 'YOUR_CHAT_ID';
+        const botToken = '7203876334:AAFjSzR6uHirszWCBYLyJyA5RE9gb9snIWU';
+        const chatId = '825627138';
         const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
         fetch(url, {

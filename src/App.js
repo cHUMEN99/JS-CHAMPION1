@@ -14,7 +14,7 @@ import Footer from './components/Footer';
 import Partners from './components/Partners';
 import Golovna from './components/pages/Golovna';
 import Golovnasecond from './components/pages/Golovnasecond';
-import './index.css'
+import './index.css';
 import Abaut from './components/pages/abaut';
 import Register from './components/Register';
 import Contact from './components/pages/Contatc';
@@ -42,11 +42,6 @@ function App() {
         
                 // Fetch Google Sheets data
                 const sheetURL = 'https://docs.google.com/spreadsheets/d/11IrWYOEe7F6E0vgKE4fa57H3SnhQAeRPGs73jg2RGvw/export?format=xlsx';
-                
-                
-                
-                
-
                 const response = await axios.get(sheetURL, { responseType: 'arraybuffer' });
 
                 const data = new Uint8Array(response.data);
