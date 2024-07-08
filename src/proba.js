@@ -1,3 +1,135 @@
+import React, { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import Drawer from './components/Drawer';
+import Buy from './components/Buy';
+import Try from './components/Try';
+import Home from './components/pages/Home';
+import Favorites from './components/pages/Favorites';
+import AppContext from './components/context';
+import AdDetails from './components/AdDetails';
+import Footer from './components/Footer';
+import Partners from './components/Partners';
+import Golovnasecond from './components/pages/Golovnasecond';
+import Abaut from './components/pages/abaut';
+import Contact from './components/pages/Contatc';
+import { getItems, getCart, uploadFile,removeFromCart,addToCart } from './components/services/api'; // Updated API calls
+import './index.css';
+
+function App() {
+    const [cartopend, setCartOpened] = useState(false);
+    const [excelData, setExcelData] = useState(null);
+    const [favoritopend, setFavoritOpend] = useState(false);
+    const [cartitems, setCartItems] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const itemsResponse = await getItems();
+                const cartResponse = await getCart();
+                
+                setIsLoading(false);
+                setCartItems(cartResponse.data);
+                setItems(itemsResponse.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        
+        fetchData();
+    }, []);
+
+    const OnAddToCart = async (obj) => {
+        try {
+            if (cartitems.find((item) => Number(item.id) === Number(obj.id))) {
+                await removeFromCart(obj.id);
+                setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+            } else {
+                const response = await addToCart(obj);
+                setCartItems((prev) => [...prev, response.data]);
+            }
+        } catch (error) {
+            console.error('Error adding/removing item:', error);
+        }
+    };
+
+    const onRemoveCart = async (id) => {
+        try {
+            await removeFromCart(id);
+            setCartItems((prev) => prev.filter((item) => item.id !== id));
+        } catch (error) {
+            console.error('Error removing item:', error);
+        }
+    };
+
+    const OnChangeSearchInput = (event) => {
+        setSearchValue(event.target.value);
+    };
+
+    const IsItemAdded = (id) => {
+        return cartitems.some((obj) => Number(obj.id) === Number(id));
+    };
+
+    return (
+        <AppContext.Provider value={{ cartitems, items, IsItemAdded, setCartOpened, setCartItems }}>
+            <div>
+                <Buy/>
+                <div className="wrapper">
+                    {cartopend && <Drawer items={cartitems} OnClose={() => setCartOpened(false)} OnRemove={onRemoveCart} />}
+                    <Header OnClickCart={() => setCartOpened(true)} OnClickfavorite={() => setFavoritOpend(true)} />
+
+                    <Routes>
+                        <Route 
+                            path="/tovar" 
+                            element={<Home 
+                                cartitems={cartitems}
+                                items={items} 
+                                searchValue={searchValue} 
+                                setSearchValue={setSearchValue} 
+                                OnChangeSearchInput={OnChangeSearchInput}
+                                OnAddToCart={OnAddToCart} 
+                                setFavoritOpend={setFavoritOpend}
+                                isloading={isLoading}
+                                
+                            />} 
+                        />
+                        <Route 
+                            path="/favorites" 
+                            element={<Favorites/>} 
+                        />
+                        <Route 
+                            path="/" 
+                            element={<Golovnasecond OnAddToCart={OnAddToCart} setFavoritOpend={setFavoritOpend}/>} 
+                        />
+                        <Route 
+                            path="/partners" 
+                            element={<Partners/>} 
+                        />
+                        <Route 
+                            path="/abaut" 
+                            element={<Abaut/>} 
+                        />
+                        <Route 
+                            path="/contact" 
+                            element={<Contact/>} 
+                        />
+                        <Route 
+                            path="/ad/:id" 
+                            element={<AdDetails excelData={excelData} OnAddToCart={OnAddToCart}/>} // Pass the fetched data to AdDetails
+                        />
+                    </Routes>
+                </div>
+                <Footer/>
+            </div>
+        </AppContext.Provider>
+    );
+}
+
+export default App;
+
 import React, { useEffect, useState, useContext } from "react";
 import Info from "./info";
 import AppContext from "./context";
@@ -13,27 +145,20 @@ function Drawer({ OnClose, OnRemove, items = [] }) {
     const totalPrice = cartitems.reduce((sum, obj) => Number(obj.price) + sum, 0);
     const tax = totalPrice * 0.05;
 
-    const sendTelegramMessage = (message) => {
-        const botToken = '7203876334:AAFjSzR6uHirszWCBYLyJyA5RE9gb9snIWU';
-        const chatId = '825627138';
-        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-        fetch(url, {
+    const sendOrderToBackend = (order) => {
+        fetch('/api/orders', { // Новий API маршрут на бекенді
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-            }),
+            body: JSON.stringify(order),
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Message sent:', data);
+            console.log('Order sent:', data);
         })
         .catch(error => {
-            console.error('Error sending message:', error);
+            console.error('Error sending order:', error);
         });
     };
 
@@ -49,17 +174,10 @@ function Drawer({ OnClose, OnRemove, items = [] }) {
 
         setIsComplete(true);
         setOrderHistory(updatedOrderHistory);
-        setCartItems([]);  // Clear the cart
+        setCartItems([]);
         setIsConfirming(false);
 
-        let message = `New order:\nDate: ${newOrder.date}\nItems:\n`;
-        newOrder.items.forEach(item => {
-            message += `${item.title} - ${item.price}₴\n`;
-        });
-        message += `Total: ${totalPrice}₴\n`;
-        message += `Phone: ${phoneNumber}\n`;
-
-        sendTelegramMessage(message);
+        sendOrderToBackend(newOrder); // Відправляємо замовлення на бекенд
     };
 
     const cancelOrder = () => {
@@ -165,7 +283,7 @@ function Drawer({ OnClose, OnRemove, items = [] }) {
                                         <h5>Подивись наш каталог, обов'язково щось знайдеш</h5>
                                     </>
                                 )}
-                                image={isComplete ? `${process.env.PUBLIC_URL}/img/zamovlenya.png` : `${process.env.PUBLIC_URL}/img/cartpusto.svg`}
+                                image={isComplete ? "/img/zamovlenya.png" : "/img/cartpusto.svg"}
                             />
                         )}
 
@@ -222,3 +340,4 @@ function Drawer({ OnClose, OnRemove, items = [] }) {
 }
 
 export default Drawer;
+

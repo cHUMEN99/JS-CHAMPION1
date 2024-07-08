@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import AppContext from './context';
-import { useState, useEffect } from 'react';
 
 function Header(props) {
   const { cartitems } = React.useContext(AppContext);
-  const TotalPrice = cartitems.reduce((sum, obj) => Number(obj.price) + sum, 0);
+  const totalPrice = cartitems.reduce((sum, obj) => Number(obj.price) + sum, 0);
+  const itemCount = cartitems.length;
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 998);
 
@@ -18,6 +18,12 @@ function Header(props) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
       <header className="header">
@@ -25,8 +31,8 @@ function Header(props) {
           <div className="headerLeft">
             <img width={40} height={40} src={`${process.env.PUBLIC_URL}/img/image.jpg`} alt="Logo" />
             <div className="headerInfo12">
-            <h1>Champion</h1>
-            <p className="headerInfo1">Магазин автозапчастин</p>
+              <h1>Champion</h1>
+              <p className="headerInfo1">Магазин автозапчастин</p>
             </div>
           </div>
         </Link>
@@ -55,9 +61,12 @@ function Header(props) {
           </div>
         )}
         <ul className="headerRight">
-          <li onClick={props.OnClickCart} style={{ cursor: 'pointer' }}>
+          <li onClick={props.OnClickCart} style={{ cursor: 'pointer', position: 'relative' }}>
             <img className="white-heart" height={18} width={18} src={`${process.env.PUBLIC_URL}/img/cart.svg.png`} alt="Cart" />
-            <span className="white-heart">{TotalPrice}₴</span>
+            <span className="white-heart">{totalPrice}₴</span>
+            {itemCount > 0 && (
+              <span className="item-count-badge">{itemCount}</span>
+            )}
           </li>
           <li>
             <Link to="/favorites">
@@ -68,18 +77,30 @@ function Header(props) {
       </header>
       {isMobile && (
         <div className="bottom-nav">
-          <Link to="/tovar">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/car-wheel.svg`} alt="Товари" />
-          </Link>
-          <Link to="/partners">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/changing-car.svg`} alt="Партнери" />
-          </Link>
-          <Link to="/abaut">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/about-us.svg`} alt="Про нас" />
-          </Link>
-          <Link to="/contact">
-            <img style={{ marginRight: '50px' }} src={`${process.env.PUBLIC_URL}/img/contacts-phone.svg`} alt="Зареєструватися" />
-          </Link>
+          <div className="nav-item">
+            <Link to="/tovar">
+              <img src={`${process.env.PUBLIC_URL}/img/car-wheel.svg`} alt="Товари" />
+            </Link>
+            <p className="nav-text">Каталог</p>
+          </div>
+          <div className="nav-item">
+            <Link to="/partners">
+              <img src={`${process.env.PUBLIC_URL}/img/changing-car.svg`} alt="Партнери" />
+            </Link>
+            <p className="nav-text">Шиномонтаж</p>
+          </div>
+          <div className="nav-item">
+            <Link to="/abaut">
+              <img src={`${process.env.PUBLIC_URL}/img/about-us.svg`} alt="Про нас" />
+            </Link>
+            <p className="nav-text">Про нас</p>
+          </div>
+          <div className="nav-item">
+            <Link to="/contact">
+              <img src={`${process.env.PUBLIC_URL}/img/contacts-phone.svg`} alt="Контакти" />
+            </Link>
+            <p className="nav-text">Контакти</p>
+          </div>
         </div>
       )}
     </>

@@ -163,14 +163,14 @@ li{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  padding: 0px;
   border-bottom:  1px solid #f4f4f4;
   box-sizing: border-box;/* Include padding in the width and height calculations */
   background: black;
   position: fixed;
   width: 100%;
   z-index: 1000 ;  /* Ensure header has a high z-index */
-  top: 0;
+  top: -10px;
   
  
   
@@ -211,6 +211,22 @@ li{
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
+  .item-count-badge {
+    position: absolute;
+    top: -10px;
+    right: 50px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 1px 5px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
 
   
   
@@ -263,9 +279,21 @@ li{
   display: flex;
 }
 
+.card-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 .content{
   padding: 60px;
-  margin-top: 160px;
+  margin-top: 100px;
 
 }
 
@@ -969,15 +997,24 @@ li{
 
   .bottom-nav {
     display: flex;
-    justify-content: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    z-index: 1000;
-  }
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.nav-text {
+    font-size: 12px; /* Зменшений шрифт */
+    margin-top: 8px;
+    text-align: center;
+}
 
   .bottom-nav img {
     width: 40px;
@@ -1128,7 +1165,7 @@ li{
     }
 
     .header {
-      padding: 5px;
+      padding: 0px;
       width: 100%; /* Ensure header takes full width */
       height: auto;
       box-sizing: border-box; /* Include padding in the width and height calculations */
