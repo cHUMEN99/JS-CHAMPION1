@@ -754,6 +754,7 @@ li{
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  
 }
 
 .text-container {
@@ -1151,7 +1152,7 @@ li{
 
     .bottom-nav {
       width: 100%; /* ширина на 100% від ширини контейнера */
-      height: 10%;
+      height: 11%;
       display: flex; /* використовуємо flexbox для вирівнювання елементів */
       justify-content: space-between; /* розміщуємо елементи з рівними проміжками */
     }
@@ -1209,6 +1210,7 @@ li{
     }
 
     .headerInfo12   {
+      font-size: 8px;
       color: white;
       
     }
@@ -1224,9 +1226,10 @@ li{
       padding-left: 10px;
     }
 
-    .content{
+    .contentt{
+      
       margin-top: 60px;
-      padding: 0px;
+      
     }
 
 
