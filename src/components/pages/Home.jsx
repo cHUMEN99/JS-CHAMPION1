@@ -79,7 +79,7 @@ function Home({ OnAddToCart, setFavoritOpend }) {
   };
 
   return (
-    <div className="content">
+    <div className="contentt">
       <div className="searchf" style={{ marginBottom: '50px' }}>
         <h1>{searchValue ? `Пошук по запросу: "${searchValue}"` : 'Всі оголошення'}</h1>
         <div className="search">
